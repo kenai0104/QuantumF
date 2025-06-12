@@ -11,9 +11,16 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to right, #f5f5dc, #d6d671);
-  padding: 30px;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff9c4 100%);
+  padding: 10px;
   transition: filter 0.3s ease;
+}
+
+.quantum-logo {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+  border-radius: 50%; /* Optional: make it round */
 }
 
 .home-container.modal-active {
@@ -51,7 +58,7 @@ body, html {
 
 .kenai-logo {
   position: absolute;
-  top: -60px;       
+  /* top: -60px;        */
   right: 10px;    
   z-index: 1000;
 }
@@ -61,7 +68,6 @@ body, html {
   height: auto;  
   display: block; 
 }
-
 
 .laptop-base {
   width: 60%;
@@ -76,7 +82,7 @@ body, html {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #6a1b9a;
+  background-color: #01796f;  /* Updated primary teal */
   color: white;
   padding: 10px 18px;
   border: none;
@@ -122,16 +128,16 @@ body, html {
 
 .user-message {
   align-self: flex-end;
-  background-color: #d6d671;
-  color: #6a1b9a;
+  background-color: #a6f0e2;  /* Updated light mint */
+  color: #045a4f;             /* Updated dark teal text */
   padding: 10px 14px;
   border-bottom-right-radius: 4px;
 }
 
 .bot-message {
   align-self: flex-start;
-  background-color: #d1b3ff;
-  color: #333;
+  background-color: #029c87;  /* Updated vibrant teal */
+  color: #fefefe;
   padding: 10px 14px;
   border-bottom-left-radius: 8px;
 }
@@ -152,13 +158,13 @@ body, html {
 }
 
 .user-message .chat-icon-inside {
-  background-color: #d6d671;
-  color: #6a1b9a;
+  background-color: #a6f0e2;
+  color: #029c87;
 }
 
 .bot-message .chat-icon-inside {
-  background-color: #6a1b9a;
-  color: #d6d671;
+  background-color: #029c87;
+  color: #ffffff;
 }
 
 .chat-text {
@@ -187,19 +193,19 @@ body, html {
 }
 
 .input-field:hover {
-  border-color: #6a1b9a;
-  box-shadow: 0 0 5px rgba(106, 27, 154, 0.5);
+  border-color: #01796f;
+  box-shadow: 0 0 2px #01796f;
 }
 
 .input-field:focus {
   outline: none;
-  border-color: #6a1b9a;
-  box-shadow: 0 0 8px rgba(106, 27, 154, 0.6);
+  border-color: #01796f;
+  box-shadow: 0 0 2px #01796f;
 }
 
 .input-send-button {
   padding: 10px 16px;
-  background-color: #6a1b9a;
+  background-color: #01796f;
   color: white;
   border: none;
   border-radius: 8px;
@@ -217,39 +223,43 @@ body, html {
 
 .graph-under-message {
   width: 100%;
-  max-width: 400px; 
-  margin: 15px auto 30px auto;
-  padding: 10px;
+  max-width: 360px;
+  margin: 10px auto 20px auto;
+  padding: 12px;
   background-color: #f9f9f9;
-  border-left: 5px solid #007bff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.graph-under-message h4 {
-  margin-bottom: 15px;
-  color: #007bff;
-  font-weight: 600;
+  border-left: 5px solid #01796f;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   text-align: center;
 }
 
-.graph-under-message canvas {
-  width: 100% !important;  
-  height: auto !important;
-  max-height: 200px; 
+.graph-under-message h4 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #01796f;
+  font-weight: 600;
 }
 
-@media screen and (max-width: 600px) {
+.graph-under-message canvas {
+  max-width: 10% !important;
+  max-height: 20px !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 auto;
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
   .graph-under-message {
-    width: 100%;  
-    padding: 10px;
+    max-width: 100%;
+    padding: 8px;
   }
 
   .graph-under-message canvas {
-    max-width: 300px;  
-    max-height: 150px; 
+    max-height: 160px !important;
   }
 }
+
 
 .modal-overlay {
   position: fixed;
@@ -267,7 +277,7 @@ body, html {
 .modal-box {
   position: relative;
   background: white;
-  border: 3px solid #6a1b9a;
+  border: 3px solid #01796f;
   padding: 30px 20px;
   border-radius: 12px;
   width: 90%;
@@ -284,14 +294,14 @@ body, html {
   background: transparent;
   border: none;
   font-size: 18px;
-  color: #6a1b9a;
+  color: #01796f;
   cursor: pointer;
 }
 
 .send-button {
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #6a1b9a;
+  background-color: #01796f;
   color: white;
   border: none;
   border-radius: 8px;
@@ -320,10 +330,10 @@ body, html {
 }
 
 .product-card {
-  border: 1px solid #6a1b9a;
+  border: 1px solid #01796f;
   padding: 20px;
   margin: 15px;
-  background: linear-gradient(145deg, #e0afff, #f4f4f4);
+  background: linear-gradient(145deg, #a6f0e2, #f4f4f4);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -381,20 +391,20 @@ body, html {
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #e0c4f4; /* Light purple border */
+  border: 1px solid #98d6cc; /* Updated soft teal border */
 }
 
 .product-table thead {
-  background-color: #d8b4f8; /* Light purple */
-  color: #4a0072;
+  background-color: #63b8af; /* Updated deeper teal */
+  color: #01796f;
 }
 
 .product-table th,
 .product-table td {
   padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #e0c4f4;
-  border-right: 1px solid #e0c4f4;
+  border-bottom: 1px solid #c0f0e8;
+  border-right: 1px solid #c0f0e8;
   white-space: nowrap;
 }
 
@@ -408,7 +418,7 @@ body, html {
 }
 
 .product-table tbody tr:hover {
-  background-color: #f3e8ff;
+  background-color: #c0f0e8; /* Softer hover */
   transition: background-color 0.2s ease-in-out;
 }
 
@@ -436,9 +446,6 @@ body, html {
   }
 }
 
-
-
-
 @keyframes blink {
   0% { opacity: 1; }
   50% { opacity: 0; }
@@ -455,18 +462,18 @@ body, html {
 }
 
 .only-names-list li {
-  background-color: #f3e8ff; /* light purple */
-  border: 1px solid #d8b4fe; /* soft lavender border */
+  background-color: #b6ece4; /* Updated darker mint */
+  border: 1px solid #98d6cc; /* Updated soft pastel teal border */
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 0.95rem;
-  color: #4a148c; /* deep purple text */
+  color: #01796f; /* Updated primary teal text */
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .only-names-list li:hover {
-  background-color: #b388ff; /* hover with deeper purple */
+  background-color: #01796f; /* Primary teal hover */
   color: white;
   cursor: default;
 }
@@ -482,12 +489,12 @@ body, html {
   0% {
     transform: scale(0.8);
     opacity: 0;
-    box-shadow: 0 0 0 rgba(106, 27, 154, 0);
+    box-shadow: 0 0 0 rgba(1, 121, 111, 0);
   }
   100% {
     transform: scale(1);
     opacity: 1;
-    box-shadow: 0 0 20px rgba(106, 27, 154, 0.6);
+    box-shadow: 0 0 20px rgba(1, 121, 111, 0.6);
   }
 }
 

@@ -14,7 +14,7 @@ import {
   Legend,
   ArcElement
 } from 'chart.js';
-import animationData from '../assets/animation.json';
+import quantumImage from '../assets/Quant.png';
 import '../css/Home.css';
 import kenaiLogo from '../assets/kenaiLogo.png';
 import stringSimilarity from 'string-similarity';
@@ -50,6 +50,11 @@ const Home = () => {
     return null;
   };
 
+  const generateRandomColors = (count) => {
+  return Array.from({ length: count }, () =>
+    `hsl(${Math.floor(Math.random() * 360)}, 70%, 60%)`
+  );
+};
 
   useEffect(() => {
     const link = document.createElement('link');
@@ -105,7 +110,7 @@ const Home = () => {
 
     // Remove visualization terms from the query before sending to API
     let query = fullUserInput
-      .replace(/\b(graph|chart|plot|visualize|visualisation|visualization)\b/g, '')
+      .replace(/\b(graph|chart|pie chart|plot|visualize|visualisation|visualization)\b/g, '')
       .replace(/\s+/g, ' ')
       .trim();
 
@@ -113,9 +118,9 @@ const Home = () => {
 
     setMessages(prev => [...prev, { text: originalText, sender: 'user' }]);
 
-    const greetings = ['hi', 'hello', 'hey'];
+    const greetings = ["hi","hello", "how are you", "what's up", "how are you doing", "what's going on", "how's it going", "how's everything", "how's life", "how's your day", "how's your week", "how's your month", "how's your year", "how's your weekend", "how's your morning"];
     if (greetings.includes(query)) {
-      const greetingResponse = "Hi, Welcome to JD. How can I assist you today?";
+      const greetingResponse = "Hi, Welcome to Quantum. How can I assist you today?";
       let index = 0;
       let animatedText = '';
       const interval = setInterval(() => {
@@ -147,7 +152,7 @@ const Home = () => {
     }
 
     try {
-      const response = await fetch('https://chatbot-bgq3.onrender.com/api/ask', {
+      const response = await fetch('https://quantumb.onrender.com/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: query }),
@@ -204,17 +209,17 @@ const Home = () => {
         return;
       }
 
-      // Decide visualization intent
       const wantsGraph = fullUserInput.includes("graph") || fullUserInput.includes("chart") || fullUserInput.includes("plot");
-      const wantsStock = fullUserInput.includes("stock") || fullUserInput.includes("inventory");
-      const wantsPrice = fullUserInput.includes("price");
-      const wantsNames = fullUserInput.includes("name") || fullUserInput.includes("product name");
+      const wantsStock = fullUserInput.includes("quantity") || fullUserInput.includes("chocolate_sales");
+      const wantsPrice = fullUserInput.includes("revenue");
+      const wantsNames = fullUserInput.includes("product") || fullUserInput.includes("product");
 
-      const labels = result.map(item => item.Product_Name || item.Product_ID);
-      const stockValues = result.map(item => Number(item.Stock_Qty) || 0);
-      const priceValues = result.map(item => parseFloat(item.Unit_Price) || 0);
+      const labels = result.map(item => item.product || item.id);
+      const stockValues = result.map(item => Number(item.quantity) || Number(item.total_quantity));
+      const priceValues = result.map(item => parseFloat(item.revenue) || Number(item.total_revenue)|| 0);
 
-      let graphType = wantsGraph ? (data?.graphType || 'bar') : null;
+      let graphType = wantsGraph ? getGraphTypeFromInput(fullUserInput) || 'bar' : null;
+
       let graphData = null;
 
       if (wantsGraph) {
@@ -222,7 +227,7 @@ const Home = () => {
 
         if (wantsStock) {
           datasets.push({
-            label: 'Stock Quantity',
+            label: 'Quantity',
             data: stockValues,
             backgroundColor: 'rgba(75,192,192,0.6)',
             borderColor: 'rgba(75,192,192,1)',
@@ -233,7 +238,7 @@ const Home = () => {
 
         if (wantsPrice) {
           datasets.push({
-            label: 'Unit Price ($)',
+            label: 'Revenue ($)',
             data: priceValues,
             backgroundColor: 'rgba(255, 99, 132, 0.6)',
             borderColor: 'rgba(255, 99, 132, 1)',
@@ -254,11 +259,41 @@ const Home = () => {
         }
 
         if (datasets.length > 0) {
-          graphData = {
-            labels,
-            datasets,
-          };
-        }
+  if (graphType === 'pie') {
+  const dataValues = wantsStock ? stockValues : priceValues;
+
+  graphData = {
+    labels, // These are product names
+    datasets: [
+      {
+        data: dataValues,
+        backgroundColor: generateRandomColors(labels.length),
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  chartOptions.plugins.tooltip = {
+    callbacks: {
+      label: function (context) {
+        const label = context.product || '';
+        const value = context.raw;
+        const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+        const percentage = ((value / total) * 100).toFixed(2);
+
+        return `${label}: ${value} (${percentage}%)`;
+      },
+    },
+  };
+}
+else {
+    graphData = {
+      labels,
+      datasets,
+    };
+  }
+}
+
       }
 
       let botText = "Here is the data you requested:";
@@ -353,8 +388,9 @@ const Home = () => {
 
 
         <div className="logo-container">
-          <Player autoplay loop speed={1} src={animationData} style={{ height: '70px', width: '70px' }} />
+          <img src={quantumImage} alt="Quantum Logo" className="quantum-logo" />
         </div>
+
 
         <div className="laptop-body">
           <div className="laptop-screen">
@@ -383,12 +419,12 @@ const Home = () => {
                         Object.keys(message.result[0]).length === 1 ? (() => {
                           const key = Object.keys(message.result[0])[0];
                           const validKeys = [
-                            'Product_Name',
-                            'Category',
-                            'Stock_Qty',
-                            'Supplier_Name',
-                            'Unit_Price',
-                            'Warehouse',
+                            'product',
+                            'customer_name',
+                            'quantity',
+                            'revenue',
+                            'country',
+                            'sale_date',
                           ];
                           if (validKeys.includes(key)) {
                             const uniqueItems = [...new Set(message.result.map(item => item[key]).filter(Boolean))];

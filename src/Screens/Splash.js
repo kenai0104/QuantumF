@@ -1,33 +1,27 @@
 import React, { useEffect } from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
-import { useNavigate } from 'react-router-dom'; 
-import animationData from '../assets/animation.json';
+import { useNavigate } from 'react-router-dom';
 import '../css/SplashScreen.css';
+import profileImage from '../assets/Quant.png';
 
 const Splash = () => {
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/home'); 
-    }, 4000); 
-
-    return () => clearTimeout(timer); 
-  }, [navigate]); 
+      navigate('/home');
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <div className="splash-container">
-      <div className="splash-content">
-        <Player
-          autoplay
-          loop
-          speed={2}
-          src={animationData}
-          style={{ height: '150px', width: '150px' }}
-        />
-        <div className="animated-text">
-          <span style={{ animationDelay: '0.3s' }}>Hi !</span>
-          <span style={{ animationDelay: '0.8s' }}>I'm JD.</span>
+      <div className="splash-card"> {/* Use new class without rotation */}
+        <div className="image-wrapper">
+          <img src={profileImage} alt="Quantum" className="profile-image" />
+        </div>
+        <div className="intro-text delayed-fade-in">
+          <h1>Hi,</h1>
+          <h2>I'm QuantM</h2>
         </div>
       </div>
     </div>

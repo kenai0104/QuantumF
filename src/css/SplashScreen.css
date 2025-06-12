@@ -1,58 +1,111 @@
 .splash-container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fff9c4 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #F5F5DC, #D6D671); 
-  text-align: center;
-  padding: 0 20px;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
+  padding: 20px;
 }
 
-.splash-content {
+.splash-card {
+  background: transparent; /* Removed white background */
+  border-radius: 25px; /* You can keep or remove this */
+  padding: 40px 50px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: transform 0.4s ease;
 }
 
-.animated-text {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  gap: 12px; 
-  font-family: 'Arial', sans-serif; 
-  font-weight: bold;
-  font-size: 24px; 
-  color: #6a1b9a;
+.intro-text h1 {
+  color: #004d40; /* dark teal */
 }
 
-.animated-text span {
+.intro-text h2 {
+  color: #00695c; /* slightly lighter dark teal */
+}
+
+
+
+.image-wrapper {
+  width: 200px; /* increased from 140px */
+  height: 300px; /* increased from 140px */
+  border-radius: 10%;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px; /* slightly reduced to maintain spacing */
+  transform: scale(0.85);
+  animation: scaleUp 0.7s ease forwards;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.1));
+}
+
+
+/* Text styling */
+.intro-text h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #00796b;
+  letter-spacing: 0.05em;
+}
+
+.intro-text h2 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin: 10px 0 0 0;
+  color: #004d40;
+  letter-spacing: 0.04em;
+}
+
+.delayed-fade-in {
   opacity: 0;
-  transform: scale(0.8); 
-  animation: fadeInZoom 2s ease-out forwards; 
+  animation: fadeInUpDelayed 1s forwards;
+  animation-delay: 1.2s;
 }
 
-@keyframes fadeInZoom {
-  0% {
+@keyframes fadeInUpDelayed {
+  from {
     opacity: 0;
-    transform: scale(0.8); 
+    transform: translateY(20px);
   }
-  100% {
+  to {
     opacity: 1;
-    transform: scale(1); 
+    transform: translateY(0);
   }
 }
 
-.animated-text span:nth-child(1) {
-  animation-delay: 0.3s; 
+@keyframes scaleUp {
+  to {
+    transform: scale(1);
+  }
 }
 
-.animated-text span:nth-child(2) {
-  animation-delay: 0.8s; 
-}
+/* Responsive tweaks */
+@media (max-width: 480px) {
+  .splash-card {
+    padding: 30px 35px;
+    max-width: 320px;
+  }
 
-.splash-gif {
-  width: 150px;
-  height: auto;
-  margin-bottom: 20px; 
+  .intro-text h1 {
+    font-size: 2rem;
+  }
+
+  .intro-text h2 {
+    font-size: 1.6rem;
+  }
 }
