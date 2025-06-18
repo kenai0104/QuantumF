@@ -18,6 +18,8 @@ import quantumImage from '../assets/Quant.png';
 import '../css/Home.css';
 import kenaiLogo from '../assets/kenaiLogo.png';
 import stringSimilarity from 'string-similarity';
+import animationData from '../assets/animation.json';
+
 
 
 ChartJS.register(
@@ -386,10 +388,16 @@ else {
   <img src={kenaiLogo} alt="Kenai Logo" />
 </div>
 
-
         <div className="logo-container">
-          <img src={quantumImage} alt="Quantum Logo" className="quantum-logo" />
+          <Player 
+            autoplay 
+            loop 
+            speed={1} 
+            src={animationData} 
+            style={{ height: '70px', width: '70px', filter: 'hue-rotate(310deg)' }} 
+          />
         </div>
+
 
 
         <div className="laptop-body">

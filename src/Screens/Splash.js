@@ -15,14 +15,9 @@ const Splash = () => {
 
   return (
     <div className="splash-container">
-      <div className="splash-card"> {/* Use new class without rotation */}
+      <div className="splash-card">
         <div className="image-wrapper">
           <img src={profileImage} alt="Quantum" className="profile-image" />
-        </div>
-        <div className="intro-text delayed-fade-in">
-          <h1>Hi,</h1>
-          <h2>I am Q</h2>
-          <h3>How can I help you ?</h3>
         </div>
       </div>
     </div>
