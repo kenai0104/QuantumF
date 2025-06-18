@@ -21,7 +21,8 @@ const Splash = () => {
         </div>
         <div className="intro-text delayed-fade-in">
           <h1>Hi,</h1>
-          <h2>I'm QuantM</h2>
+          <h2>I am Q</h2>
+          <h3>How can I help you ?</h3>
         </div>
       </div>
     </div>
