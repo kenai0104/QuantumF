@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/Login.css';
+import QuantLogo from '../assets/kenaiLogo.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -23,6 +24,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
+        <img src={QuantLogo} alt="Quant Logo" className="login-logo" />
         <h2>Login</h2>
         <input
           type="text"

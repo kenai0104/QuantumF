@@ -7,27 +7,35 @@
   align-items: center;
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
-  padding: 20px;
+  padding: 20px 20px 10px; /* Reduced bottom padding */
 }
 
 .login-form {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.9); /* Slightly more opaque for clarity */
   border-radius: 25px;
-  padding: 40px 50px;
+  padding: 30px 40px; /* Slightly less padding */
   max-width: 400px;
   width: 100%;
   text-align: center;
   box-sizing: border-box;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   animation: fadeInUpDelayed 1s ease forwards;
   transform: translateY(20px);
   opacity: 0;
 }
 
+.login-logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 15px;
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2)); /* Clearer */
+}
+
 .login-form h2 {
   font-size: 2rem;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: #00695c;
   letter-spacing: 0.04em;
 }
@@ -35,7 +43,7 @@
 .login-form input {
   width: 100%;
   padding: 12px 15px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 12px;
   font-size: 1rem;
@@ -61,10 +69,9 @@
 }
 
 .login-form button:hover {
-  background-color: #1a5ed9;
+  background-color: #004d40;
 }
 
-/* Animation Keyframes */
 @keyframes fadeInUpDelayed {
   to {
     transform: translateY(0);
@@ -72,14 +79,18 @@
   }
 }
 
-/* Responsive tweaks */
 @media (max-width: 480px) {
   .login-form {
-    padding: 30px 35px;
+    padding: 25px 30px;
     max-width: 320px;
   }
 
   .login-form h2 {
     font-size: 1.6rem;
+  }
+
+  .login-logo {
+    width: 90px;
+    margin-bottom: 10px;
   }
 }
