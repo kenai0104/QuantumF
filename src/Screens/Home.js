@@ -152,17 +152,32 @@ const Home = () => {
     if (needsListHint && !query.includes("list") && !query.includes("show")) {
       query = "list " + query;
     }
+    const revenueTerms = /\b(revenue|price|income|amount|money|total sales|total income|total revenue)\b/i;
+    const userRole = sessionStorage.getItem('userRole') || 'guest';
 
+    if (userRole === 'qtg' && revenueTerms.test(query)) {
+      setMessages(prev => [...prev, { text: "⚠️ Access is Restricted", sender: 'bot' }])  ;
+  
+  return;
+}
     try {
+
       const response = await fetch('https://quantumb.onrender.com/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: query }),
+        body: JSON.stringify({ question: query,role:userRole }),
       });
-
+      console.log("Body sent to API:", JSON.stringify({ question: query, role: userRole }));
       const data = await response.json();
       const result = data?.result || null;
 
+      if (userRole === 'qtg' && Array.isArray(result)) {
+  result.forEach(item => {
+    delete item.total_revenue;
+    delete item.revenue;
+    delete item.price;
+  });
+}
       if (typeof result === 'string') {
         let cleanResult = result;
 
