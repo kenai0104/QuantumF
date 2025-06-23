@@ -122,7 +122,7 @@ const Home = () => {
 
     const greetings = ["hi","hello", "how are you", "what's up", "how are you doing", "what's going on", "how's it going", "how's everything", "how's life", "how's your day", "how's your week", "how's your month", "how's your year", "how's your weekend", "how's your morning"];
     if (greetings.includes(query)) {
-      const greetingResponse = "Hi, Welcome to Quantum. How can I assist you today?";
+      const greetingResponse = "Hi, Welcome to QuantM. How can I assist you today?";
       let index = 0;
       let animatedText = '';
       const interval = setInterval(() => {
