@@ -148,6 +148,65 @@ const Home = () => {
       return;
     }
 
+    // Assistance intent
+const helpKeywords = ["help", "assistance", "guidance", "support"];
+if (helpKeywords.some(word => query.includes(word))) {
+  const helpResponse = "Yes, how can I assist?";
+  let index = 0;
+  let animatedText = '';
+  const interval = setInterval(() => {
+    if (index < helpResponse.length) {
+      animatedText += helpResponse[index];
+      setMessages(prev => {
+        const last = prev[prev.length - 1];
+        if (last && last.sender === 'bot' && last.typing) {
+          return [...prev.slice(0, -1), { ...last, text: animatedText }];
+        } else {
+          return [...prev, { text: animatedText, sender: 'bot', typing: true }];
+        }
+      });
+      index++;
+    } else {
+      clearInterval(interval);
+      setMessages(prev => [
+        ...prev.slice(0, -1),
+        { text: helpResponse, sender: 'bot' }
+      ]);
+    }
+  }, 30);
+  return;
+}
+
+// Identity intent
+const identityQuestions = ["what is your name", "who are you", "what's your name"];
+if (identityQuestions.includes(query)) {
+  const identityResponse = "Hey, this is QBot!";
+  let index = 0;
+  let animatedText = '';
+  const interval = setInterval(() => {
+    if (index < identityResponse.length) {
+      animatedText += identityResponse[index];
+      setMessages(prev => {
+        const last = prev[prev.length - 1];
+        if (last && last.sender === 'bot' && last.typing) {
+          return [...prev.slice(0, -1), { ...last, text: animatedText }];
+        } else {
+          return [...prev, { text: animatedText, sender: 'bot', typing: true }];
+        }
+      });
+      index++;
+    } else {
+      clearInterval(interval);
+      setMessages(prev => [
+        ...prev.slice(0, -1),
+        { text: identityResponse, sender: 'bot' }
+      ]);
+    }
+  }, 30);
+  return;
+}
+
+
     const needsListHint = /^(all|show|list|which).*name|product|stock|price/.test(query);
     if (needsListHint && !query.includes("list") && !query.includes("show")) {
       query = "list " + query;
