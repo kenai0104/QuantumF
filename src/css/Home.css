@@ -67,6 +67,60 @@ background-position: center;
   position: relative;
 }
 
+.logout-button {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.logout-button i {
+  font-size: 14px;
+}
+
+.logout-button:hover {
+  background-color: #d93636;
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+  .logout-button {
+    padding: 7px 12px;
+    font-size: 13px;
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .logout-button i {
+    font-size: 13px;
+  }
+}
+
+/* Phones */
+@media screen and (max-width: 480px) {
+  .logout-button {
+    padding: 6px 10px;
+    font-size: 12px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .logout-button i {
+    font-size: 12px;
+  }
+}
 
 
 .laptop-base {

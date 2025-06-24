@@ -616,6 +616,15 @@ else {
 
           <div className="laptop-base" />
         </div>
+        <button className="logout-button" onClick={() => {
+        sessionStorage.clear();
+        navigate('/login');
+      }}>
+        <i className="fas fa-sign-out-alt"></i> Logout
+      </button>
+
+
+
       </div>
 
       {showModal && (
