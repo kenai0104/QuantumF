@@ -419,11 +419,6 @@ else {
     }
   };
 
-
-
-
-
-
   const handleSendTranscription = () => {
     handleMessage(transcribedText);
     setTranscribedText('');
@@ -441,7 +436,6 @@ else {
     }
   }, [messages]);
 
-  // Add this just above where you render your graph (before the return block)
   const chartOptions = {
     responsive: true,
     plugins: {
@@ -471,11 +465,8 @@ else {
             style={{ height: '70px', width: '70px', filter: 'hue-rotate(310deg)' }} 
           />
         </div>
-
-
-
         <div className="laptop-body">
-          <div className="laptop-screen">
+            <div className={`laptop-screen ${messages.some(msg => msg.graphType) ? 'hide-background' : ''}`}>
             <div className="chat-messages" ref={chatContainerRef}>
               {messages && messages.map((message, index) => (
                 <div key={index}>
@@ -523,50 +514,26 @@ else {
                           return <span>Sorry, no valid data found to display.</span>;
                         })() : (
                           <div className="product-table-container">
-  <table className="product-table">
-    <thead>
-      <tr>
-        {Object.keys(message.result[0]).map((key, idx) => (
-          <th key={idx}>{key.replace(/_/g, ' ')}</th>
-        ))}
-      </tr>
-    </thead>
-    <tbody>
-      {message.result.map((item, rowIndex) => (
-        <tr key={rowIndex}>
-          {Object.values(item).map((value, colIndex) => (
-            <td key={colIndex}>{String(value)}</td>
-          ))}
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+                            <table className="product-table">
+                              <thead>
+                                <tr>
+                                  {Object.keys(message.result[0]).map((key, idx) => (
+                                    <th key={idx}>{key.replace(/_/g, ' ')}</th>
+                                  ))}
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {message.result.map((item, rowIndex) => (
+                                  <tr key={rowIndex}>
+                                    {Object.values(item).map((value, colIndex) => (
+                                      <td key={colIndex}>{String(value)}</td>
+                                    ))}
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
 
-//                           <div className="product-card-grid">
-//   {message.result.map((product, idx) => (
-//     <div className="product-card" key={idx}>
-//       {Object.entries(product).map(([key, value]) => (
-//         <p key={key}>
-//           <strong>{key.replace(/_/g, ' ')}:</strong> {String(value)}
-//         </p>
-//       ))}
-//     </div>
-//   ))}
-// </div>
-
-                          // <div className="product-card-grid">
-                          //   {message.result.map((product, idx) => (
-                          //     <div className="product-card" key={idx}>
-                          //       <h3>{product.Product_Name}</h3>
-                          //       <p><strong>Category:</strong> {product.Category}</p>
-                          //       <p><strong>Stock:</strong> {product.Stock_Qty}</p>
-                          //       <p><strong>Price:</strong> ${product.Unit_Price}</p>
-                          //       <p><strong>Warehouse:</strong> {product.Warehouse}</p>
-                          //       <p><strong>Supplier:</strong> {product.Supplier_Name}</p>
-                          //     </div>
-                          //   ))}
-                          // </div>
                         )
                       )}
                     </>
