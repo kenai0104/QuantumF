@@ -419,6 +419,7 @@ else {
     }
   };
 
+
   const handleSendTranscription = () => {
     handleMessage(transcribedText);
     setTranscribedText('');
@@ -466,7 +467,7 @@ else {
           />
         </div>
         <div className="laptop-body">
-            <div className={`laptop-screen ${messages.some(msg => msg.graphType) ? 'hide-background' : ''}`}>
+          <div className="laptop-screen">
             <div className="chat-messages" ref={chatContainerRef}>
               {messages && messages.map((message, index) => (
                 <div key={index}>
