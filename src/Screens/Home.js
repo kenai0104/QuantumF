@@ -286,10 +286,9 @@ if (identityQuestions.includes(query)) {
       }
 
       const wantsGraph = fullUserInput.includes("graph") || fullUserInput.includes("chart") || fullUserInput.includes("plot");
-      const wantsStock = fullUserInput.includes("quantity") || fullUserInput.includes("chocolate_sales");
+      const wantsStock =fullUserInput.includes("stock") ||fullUserInput.includes("quantity") ||fullUserInput.includes("chocolate_sales");
       const wantsPrice = fullUserInput.includes("revenue");
       const wantsNames = fullUserInput.includes("product") || fullUserInput.includes("product");
-
       const labels = result.map(item => item.product || item.id);
       const stockValues = result.map(item => Number(item.quantity) || Number(item.total_quantity));
       const priceValues = result.map(item => parseFloat(item.revenue) || Number(item.total_revenue)|| 0);
@@ -335,19 +334,19 @@ if (identityQuestions.includes(query)) {
         }
 
         if (datasets.length > 0) {
-  if (graphType === 'pie') {
-  const dataValues = wantsStock ? stockValues : priceValues;
+        if (graphType === 'pie') {
+        const dataValues = wantsStock ? stockValues : priceValues;
 
-  graphData = {
-    labels, // These are product names
-    datasets: [
-      {
-        data: dataValues,
-        backgroundColor: generateRandomColors(labels.length),
-        borderWidth: 1,
-      },
-    ],
-  };
+        graphData = {
+          labels,
+          datasets: [
+            {
+              data: dataValues,
+              backgroundColor: generateRandomColors(labels.length),
+              borderWidth: 1,
+            },
+          ],
+        };
 
   chartOptions.plugins.tooltip = {
     callbacks: {
@@ -467,7 +466,7 @@ else {
           />
         </div>
         <div className="laptop-body">
-          <div className="laptop-screen">
+            <div className={`laptop-screen ${messages.length > 0 ? 'no-background' : ''}`}>
             <div className="chat-messages" ref={chatContainerRef}>
               {messages && messages.map((message, index) => (
                 <div key={index}>
@@ -565,7 +564,7 @@ else {
             <div className="input-container">
               <input
                 type="text"
-                placeholder="Ask something..."
+                placeholder="Start Your Inventory Search..."
                 className="input-field"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
