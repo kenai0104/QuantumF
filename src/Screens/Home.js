@@ -221,7 +221,7 @@ if (identityQuestions.includes(query)) {
 }
     try {
 
-      const response = await fetch('https://quantumb.onrender.com/api/ask', {
+      const response = await fetch('https://quantmb.onrender.com/api/ask', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: query,role:userRole }),
